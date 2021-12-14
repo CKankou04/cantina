@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 
+
+
 const ListRecipes = () => {
     const [recipeList, setRecipeList] = useState([]);
   useEffect(() => {
@@ -17,50 +19,56 @@ const ListRecipes = () => {
     return (
         <div>
             <form className="form-search">
-        <span className="form-search-title">
-          <label>Titre </label>
-          <input type="text" name="titre" />
-        </span>
-        <span>
-          <label>date de sortie</label>
-          <input type="date" name="date-sortie" />
-        </span>
-        <span>
-          <label>Catégories</label>
-          <select>
-            <option value="">Comédies</option>
-            <option value="">Action</option>
-            <option value="">Jeunesse</option>
-          </select>
-        </span>
-      </form>
+                <span className="form-search-title">
+                    <label>Titre </label>
+                    <input type="text" name="titre" />
+                </span>
+                <span>
+                    <label>Niveau de Difficulté</label>
+                    <select>
+                        <option value="padawan">Padawan</option>
+                        <option value="jedi">Jedi</option>
+                        <option value="maitre">Maitre</option>
+                    </select>
+                </span>
+                <span>
+                    <label>Nombre de personne</label>
+                    <input type="number" name="nbPers" />
+                </span>
+                <span>
+                    <label>Temps de prépation</label>
+                    <input type="time" name="Tprep" />
+                </span>
+            </form>
 
-      {recipeList && (
-        <div className="container-list-movie">
-          <ul className="card-list">
-            {recipeList.map((movie, key) => (
-                <li className="list-movie" key={key}>
-                  <Link to={`/recipe/${movie.id}`}>
-                  <span className="image-movie">
-                    <img src={movie.photo} alt="poster du film" width="200px" height="250px" className="list-img" />
-                  </span>
-                  </Link>
-                  <span className="movie-info">
-                    <span className="movie-info-title">{movie.titre} </span>
+            {recipeList && (
+                <div className="container-list-recipe">
+                <ul className="card-list">
+                    {recipeList.map((recipe, key) => (
+                        <li className="list-recipe" key={key}>
+                            <Link to={`/recipe/${recipe.id}`}>
+                                <span className="image-recipe">
+                                    <img src={recipe.photo} alt="poster du film" width="200px" height="250px" className="list-img" />
+                                </span>
+                            </Link>
+                        <span className="recipe-info">
+                            <span className="recipe-info-title">{recipe.titre} </span>
+                            <p className="description">{recipe.description}</p>
+                            <p className="n-dificlute">{recipe.niveau}</p>
+                            <p className="nb-pers">{recipe.personnes}personne(s)</p>
+                            <p className="tempsPreparation">{recipe.tempsPreparation}min</p>
+                        </span>
+                        <span className="container-btn">
+                            <button><Link to={`/editRecipe/${recipe.id}`} className="btn">Modifier</Link></button>
+                            <button className="btn">Supprimer</button>
+                        </span>
 
-                    <p className="description">{movie.description}</p>
-                  </span>
-                  <span className="container-btn">
-                    <button><Link to={`/editRecipe/${movie.id}`} className="btn">Modifier</Link></button>
-                    <button className="btn">Supprimer</button>
-                  </span>
+                        </li>
 
-                </li>
-
-            ))}
-          </ul>
-        </div>
-      )}
+                    ))}
+                </ul>
+                </div>
+            )}
 
         </div>
     )
