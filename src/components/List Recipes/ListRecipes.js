@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 
 
-
-const ListRecipes = () => {
+const ListRecipes = (props) => {
     const [recipeList, setRecipeList] = useState([]);
   useEffect(() => {
     fetchData();
@@ -16,6 +16,15 @@ const ListRecipes = () => {
     setRecipeList(result);
 
   };
+
+   // fonction permettant de supprimer un film du server en cliquant sur le bonton supprimer
+   const deleteRecipe = (id) =>{
+    axios.delete(`http://localhost:9000/api/recipes/${id}`)
+    .then((response) => console.log(response.data))
+    .catch((er) => console.log(er));
+  };
+
+
     return (
         <div>
             <form className="form-search">
@@ -60,7 +69,7 @@ const ListRecipes = () => {
                         </span>
                         <span className="container-btn">
                             <button><Link to={`/editRecipe/${recipe.id}`} className="btn">Modifier</Link></button>
-                            <button className="btn">Supprimer</button>
+                            <button onClick={() => deleteRecipe(recipe.id)} className="btn">Supprimer</button>
                         </span>
 
                         </li>

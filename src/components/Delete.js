@@ -1,9 +1,22 @@
 import React from 'react'
+import axios from 'axios';
 
-export const Delete = () => {
+const Delete = () => {
+    const handleDelete = ({id}) =>{
+        axios.delete(`http://localhost:9000/api/recipes/${id}`);
+        window.location.reload();
+        // console.log("test suppression");
+    };
+
     return (
-        <div>
+            <button className="btnRed" onClick={() =>{
+                if (window.confirm('Voulez-vous vraiment supprimer ce film ?')) {
+                    handleDelete();
+                }
+                }}>
+                Supprimer
+            </button>
+    );
+};
 
-        </div>
-    )
-}
+export default Delete;

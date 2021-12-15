@@ -1,4 +1,28 @@
+import React, {useState, useEffect} from "react"
+import axios from "axios"
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 const EditRecipe = () => {
+    const [editRecipe, setEditRecipe] = useState;
+    const {id} = useParams();
+
+    useEffect(() => {
+      editRecipeRequest();
+    }, []);
+
+
+    const editRecipeRequest = (data) => {
+        axios({
+            method: 'post',
+            url: `http://localhost:9000/api/recipes/${id}`,
+            data
+        })
+        .then (res => {
+          window.location.replace('/')
+        })
+      };
+
+
     return (
         <>
             <form className="form_new_movie">

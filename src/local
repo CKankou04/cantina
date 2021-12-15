@@ -1,0 +1,123 @@
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+
+const AddRecipes = () => {
+
+    const [newReceipe, setNewRecipe] = useState([
+        {
+            titre: '',
+            description: '',
+            niveau: '',
+            personnes: '',
+            tempsPreparation:'',
+            ingredients: [],
+            etapes:[],
+        }
+    ]);
+    useEffect(() => {
+        AddRecipeRequeste()
+
+    }, []);
+
+      handleChange = (e) => {
+        const titre = e.target.titre
+        const description = e.target.description
+        const niveau = e.target.niveau
+        const personnes = e.target.personnes
+        const ingredients = e.target.ingredients
+        const etapes = e.target.etapes
+
+    }
+
+      const handleSubmit = (e) => {
+          e.preventDefault()
+          const data = JSON.stringify(newReceipe)
+          addRecipeRequeste(data)
+
+      }
+
+      const addRecipeRequeste = (data) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:9000/api/recipes',
+            data
+        })
+        .then (res => {
+          window.location.replace('/')
+        })
+    }
+    return (
+        <>
+            <form className="form_new_movie" onSubmit={handleSubmit} >
+              <fieldset className="card_new_movie">
+                <legend className="legend">Formulaire d'ajout</legend>
+                <div className="title_and_date">
+                  <span>
+                    <label>Titre:</label>
+                    <input type="text" name="titre" value={addReceipeDetail.titre} onChange={setAddRecipeDetail} required />
+                  </span>
+                  <span>
+                    <label>Description:</label>
+                    <input type="textarea" name="description" value={addReceipeDetail.description} onChange={setAddRecipeDetail} required/>
+                  </span>
+                </div>
+                <div className="categories_new_movie">
+                  <span>Niveau de Difficulté:</span>
+                  <select name="niveau" value={addReceipeDetail.niveau} onChange={setAddRecipeDetail} required>
+                    <option value="Padawan">Padawan</option>
+                    <option value="Jedi">Jedi</option>
+                    <option value="Maitre">Maitre</option>
+                  </select>
+                </div>
+                <div className="description_new_movie">
+                  <label>Personne:</label>
+                  <input
+                    type="number" className="new_desc" name="personnes" value={addReceipeDetail.personnes} onChange={setAddRecipeDetail} required />
+                </div>
+                <div className="description_new_movie">
+                  <label>Temps de Preparation:</label>
+                  <input
+                    type="number" className="new_desc" name="tempsPreparation" value={addReceipeDetail.tempsPreparation} onChange={setAddRecipeDetail}  required />
+                </div>
+                <div>
+                  <label>Photo de la recette</label>
+                  <input
+                    type="url"
+                    width="20px"
+                    height="20px"
+                    alt="poster_movie_tnbd"
+                    name="photo" value={addReceipeDetail.photo} onChange={setAddRecipeDetail}
+
+
+                  />
+                </div>
+                <div>
+                  <h3>Les ingredients de la recette</h3>
+                  <div>
+                    <input type="number"  />
+                    <span>
+                        <select>
+                            <option value="cl">cl</option>
+                            <option value="mg">mg</option>
+                            <option value=""></option>
+                        </select>
+                    </span>
+                    <input type="text" />
+
+                  </div>
+                </div>
+                <div>
+                  <h3>Les étapes de préparations</h3>
+                  <input type="text" alt="film" name="etapes" value={addReceipeDetail.etapes} onChange={setAddRecipeDetail} required/>
+                </div>
+                <button type="button" onClick={AddRecipeRequeste} >
+                  Enregistrer
+                </button>
+              </fieldset>
+            </form>
+
+        </>
+    )
+}
+
+export default AddRecipes
