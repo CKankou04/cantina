@@ -18,9 +18,11 @@ const ListRecipes = (props) => {
   };
 
    // fonction permettant de supprimer un film du server en cliquant sur le bonton supprimer
-   const deleteRecipe = (id) =>{
-    axios.delete(`http://localhost:9000/api/recipes/${id}`)
-    .then((response) => console.log(response.data))
+   const deleteRecipe = (id, index) =>{
+    axios.delete(`http://localhost:9000/api/recipe/${id}`)
+    .then((response) => {
+        console.log(response.data)
+    })
     .catch((er) => console.log(er));
   };
 
@@ -53,8 +55,8 @@ const ListRecipes = (props) => {
             {recipeList && (
                 <div className="container-list-recipe">
                 <ul className="card-list">
-                    {recipeList.map((recipe, key) => (
-                        <li className="list-recipe" key={key}>
+                    {recipeList.map((recipe, index) => (
+                        <li className="list-recipe" key={index}>
                             <Link to={`/recipe/${recipe.id}`}>
                                 <span className="image-recipe">
                                     <img src={recipe.photo} alt="poster du film" width="200px" height="250px" className="list-img" />
@@ -69,7 +71,7 @@ const ListRecipes = (props) => {
                         </span>
                         <span className="container-btn">
                             <button><Link to={`/editRecipe/${recipe.id}`} className="btn">Modifier</Link></button>
-                            <button onClick={() => deleteRecipe(recipe.id)} className="btn">Supprimer</button>
+                            <button onClick={() => deleteRecipe(recipe.id, index)} className="btn">Supprimer</button>
                         </span>
 
                         </li>

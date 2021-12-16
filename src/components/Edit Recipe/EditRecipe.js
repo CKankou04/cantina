@@ -7,14 +7,14 @@ const EditRecipe = () => {
     const {id} = useParams();
 
     useEffect(() => {
-      editRecipeRequest();
+
     }, []);
 
 
     const editRecipeRequest = (data) => {
         axios({
-            method: 'post',
-            url: `http://localhost:9000/api/recipes/${id}`,
+            method: 'put',
+            url: `http://localhost:9000/api/recipe/${id}`,
             data
         })
         .then (res => {

@@ -21,6 +21,12 @@ import axios from 'axios';
     newRecipeNext[e.target.name] = e.target.value
     setNewRecipe(newRecipeNext)
   }
+  const handleEtapesChange = (e, index) =>{
+    const newRecipeNext = {...newRecipe};
+    newRecipeNext.etapes[index] = e.target.value
+    setNewRecipe(newRecipeNext)
+    console.log(newRecipe)
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = JSON.stringify(newRecipe)
@@ -41,6 +47,10 @@ import axios from 'axios';
   }
 
   const addEtape = () =>{
+    const newRecipeNext = {...newRecipe};
+    newRecipeNext.etapes.push("")
+    setNewRecipe(newRecipeNext)
+
 
   }
   return (
@@ -95,9 +105,9 @@ import axios from 'axios';
             <h3>Les étapes de préparations</h3>
             {newRecipe && (
               <div>
-                {newRecipe.etapes.map((etape, key) =>(
-                <div>
-                  <input type="text" alt="etape" name="etapes" value={etape} required/>
+                {newRecipe.etapes.map((etape, index) =>(
+                <div key={index}>
+                  <input type="text" alt="etape" name="etapes" value={etape} onChange={(e) =>{ handleEtapesChange(e, index)} } required/>
               </div>))}
               </div>
             )}
