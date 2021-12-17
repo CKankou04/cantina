@@ -1,5 +1,7 @@
 import React, { useState} from 'react'
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
  const AddRecipes = () => {
 
@@ -27,6 +29,18 @@ import axios from 'axios';
     setNewRecipe(newRecipeNext)
     console.log(newRecipe)
   }
+  const handleFirstChange = (e, index) =>{
+    const newRecipeNext = {...newRecipe};
+    newRecipeNext.ingredients[index][0] = e.target.value
+    setNewRecipe(newRecipeNext)
+    console.log(newRecipe)
+  }
+  const handleSecondChange = (e, index) =>{
+    const newRecipeNexts = {...newRecipe};
+    newRecipeNexts.ingredients[index][1] = e.target.value
+    setNewRecipe(newRecipeNexts)
+    console.log(newRecipe)
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = JSON.stringify(newRecipe)
@@ -50,12 +64,18 @@ import axios from 'axios';
     const newRecipeNext = {...newRecipe};
     newRecipeNext.etapes.push("")
     setNewRecipe(newRecipeNext)
-
-
   }
-  return (
+   const addIngredient = () =>{
+    const newRecipeNext = {...newRecipe};
+    newRecipeNext.ingredients.push(["",""])
+    setNewRecipe(newRecipeNext)
+   }
 
-      <form className="form" onSubmit={handleSubmit} >
+  return (
+    <>
+
+
+    <form className="form" onSubmit={handleSubmit} >
         <fieldset className="card">
           <legend className="legend">Formulaire d'ajout</legend>
           <div className="title_and_date">
@@ -90,27 +110,28 @@ import axios from 'axios';
           <div>
             <h3>Les ingredients de la recette</h3>
             <div>
-              {newRecipe.ingredients.map ((ingredient) =>(
-                <div>
-                    <input type="number"  />
-                    <input type="text" />
+              {newRecipe.ingredients.map ((ingredient, index) =>(
+                <div >
+                    <input type="number" name="ingredients" value={ingredient} onChange={(e) =>{ handleFirstChange(e, index)}} />
+                    <input type="text" name="ingredients" value={ingredient} onChange={(e) =>{ handleSecondChange(e, index)}} />
                 </div>
 
               ))}
-              <button type="button">Ajouter un ingrédient</button>
+
+              <button type="button" onClick={addIngredient}>Ajouter un ingrédient</button>
 
             </div>
           </div>
           <div>
             <h3>Les étapes de préparations</h3>
-            {newRecipe && (
+
               <div>
                 {newRecipe.etapes.map((etape, index) =>(
                 <div key={index}>
                   <input type="text" alt="etape" name="etapes" value={etape} onChange={(e) =>{ handleEtapesChange(e, index)} } required/>
               </div>))}
               </div>
-            )}
+
 
             <button type="button" onClick={addEtape}> ajouter une étape</button>
 
@@ -120,6 +141,9 @@ import axios from 'axios';
           </button>
         </fieldset>
       </form>
+    </>
+
+
 
   )}
 

@@ -34,7 +34,8 @@ const Recipe = () => {
                 <div className="detail_movie_container">
                     <p className="title">{recip.titre}</p>
                     <p className="niveau">{recip.niveau}</p>
-                    <p>{recip.personnes}-</p>
+                    <p>{recip.personnes}</p>
+                    <p>{recip.tempsPreparation}</p>
 
                     <div className="descriptionM">
                     {recip.description}

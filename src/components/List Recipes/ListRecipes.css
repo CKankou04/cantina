@@ -2,11 +2,11 @@
     display:flex;
     flex-wrap:wrap;
   }
-  .list-movie{
+  .list-recipe{
     width: 300px;
     list-style:none;
     margin:1rem;
-    background-color:#373b69;
+    background-color:#D9A5B3;
     border-radius:3px;
     overflow:hidden;
     box-shadow: inset 0 0 1em , 0 0 2em grey;
@@ -15,15 +15,18 @@
   .list-img{
     max-width: 100%;
   }
-  .movie-info{
+  .recipe-info{
    display:flex;
    flex-direction:column;
    justify-content: space-between;
    align-items: center;
    padding:0.5rem;
+   line-height:0.1rem;
+   color:#062337;
+   text-align:start;
   }
   .form-search{
-    background-color:##373b69;
+
     padding:1rem;
     display:flex;
     justify-content:space-evenly;
@@ -36,14 +39,10 @@
     padding:3px;
     width:15rem;
   }
-  .description{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  }
-  .movie-info-title{
-    font-size:1rem;
-    color:#A93226;
+  .recipe-info-title{
+    font-size:2rem;
+    color:#F7F7F7;
+    padding-bottom:1.5rem;
   }
   .container-btn{
     display: flex;
@@ -54,4 +53,9 @@
     display:flex;
     margin-right:3px;
     padding:5px;
+  }
+  .ansone{
+    background-color: transparent;
+    border: none;
+    size:1.5rem;
   }

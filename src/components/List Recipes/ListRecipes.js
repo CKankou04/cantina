@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import '../List Recipes/ListRecipes.css'
+import {FaTrashAlt} from 'react-icons/fa'
 
 
 const ListRecipes = (props) => {
@@ -25,6 +27,10 @@ const ListRecipes = (props) => {
     })
     .catch((er) => console.log(er));
   };
+  const secondToMin = (minutes) => {
+    return `${Math.floor(minutes / 60)}min${minutes % 60}`
+
+  }
 
 
     return (
@@ -64,14 +70,14 @@ const ListRecipes = (props) => {
                             </Link>
                         <span className="recipe-info">
                             <span className="recipe-info-title">{recipe.titre} </span>
-                            <p className="description">{recipe.description}</p>
-                            <p className="n-dificlute">{recipe.niveau}</p>
-                            <p className="nb-pers">{recipe.personnes}personne(s)</p>
-                            <p className="tempsPreparation">{recipe.tempsPreparation}min</p>
+                            <p className="n-dificlute"> Le niveau {recipe.niveau}</p>
+                            <p className="nb-pers"> Pour {recipe.personnes}personne(s)</p>
+                            <p className="tempsPreparation">Temps de préparation: {secondToMin(recipe.tempsPreparation)} </p>
+
                         </span>
                         <span className="container-btn">
                             <button><Link to={`/editRecipe/${recipe.id}`} className="btn">Modifier</Link></button>
-                            <button onClick={() => deleteRecipe(recipe.id, index)} className="btn">Supprimer</button>
+                            <button onClick={() => deleteRecipe(recipe.id , index)} className="btn"><FaTrashAlt className='ansone'/></button>
                         </span>
 
                         </li>

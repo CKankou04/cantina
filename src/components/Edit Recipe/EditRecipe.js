@@ -1,98 +1,87 @@
 import React, {useState, useEffect} from "react"
-import axios from "axios"
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 
 const EditRecipe = () => {
-    const [editRecipe, setEditRecipe] = useState;
+    const [editRecipe, setEditRecipe] = useState();
     const {id} = useParams();
 
     useEffect(() => {
-
+        fetchRecipeEd();
     }, []);
 
-
-    const editRecipeRequest = (data) => {
-        axios({
-            method: 'put',
-            url: `http://localhost:9000/api/recipe/${id}`,
-            data
-        })
-        .then (res => {
-          window.location.replace('/')
-        })
+    const fetchRecipeEd = async () => {
+        const data = await fetch(
+          `http://localhost:9000/api/recipe/${id}`
+        );
+        const result = await data.json();
+        setEditRecipe(result);
+        console.log(result);
       };
+
+
 
 
     return (
         <>
-            <form className="form_new_movie">
-            <fieldset className="card_new_movie">
-                <legend className="legend">Formulaire d'ajout</legend>
-                <div className="title_and_date">
-                <span>
-                    <label>Titre:</label>
-                    <input type="text"  required />
-                </span>
-                <span>
-                    <label>Description:</label>
-                    <input type="textarea"  required/>
-                </span>
-                </div>
-                <div className="categories_new_movie">
-                <span>Niveau de Difficulté:</span>
-                <select required>
-                    <option value="Padawan">Padawan</option>
-                    <option value="Jedi">Jedi</option>
-                    <option value="Maitre">Maitre</option>
-                </select>
-                </div>
-                <div className="description_new_movie">
-                <label>Personne:</label>
-                <input
-                    type="number" className="new_desc" required
-                />
-                </div>
-                <div className="description_new_movie">
-                <label>Temps de Preparation:</label>
-                <input
-                    type="number" className="new_desc" required
-                />
-                </div>
-                <div>
-                <label>Photo de la recette</label>
-                <input
-                    type="url"
-                    width="20px"
-                    height="20px"
-                    alt="poster_movie_tnbd"
+            {editRecipe &&(
+                <form className="form_new_movie">
+                <fieldset className="card_new_movie">
+                    <legend className="legend">Formulaire de modification</legend>
+                    <div className="title_and_date">
+                    <div>
+                        <label>Titre:</label>
+                        <input type="text" value={editRecipe.titre} required />
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                        <input type="textarea" value={editRecipe.description}  required/>
+                    </div>
+                    </div>
+                    <div className="categories_new_movie">
+                    <span>Niveau de Difficulté:</span>
+                    <input type="text" value={editRecipe.niveau} />
+
+                    </div>
+                    <div className="description_new_movie">
+                    <label>Personne:</label>
+                    <input
+                        type="number" className="new_desc" value={editRecipe.personnes} required
+                    />
+                    </div>
+                    <div className="description_new_movie">
+                    <label>Temps de Preparation:</label>
+                    <input
+                        type="number" className="new_desc" value={editRecipe.tempsPreparation} required
+                    />
+                    </div>
+                    <div>
+                        <h3>Les ingredients de la recette</h3>
+                        {(editRecipe.ingredients).map((ingredient) =>(
+                        <div>
+                            <input type="text" value={ingredient} required/>
+                        </div>
+                        ))}
+                    </div>
 
 
-                />
-                </div>
-                <div>
-                <h3>Les ingredients de la recette</h3>
-                <div>
-                    <input type="number" required />
-                    <span>
-                        <select>
-                            <option value="cl">cl</option>
-                            <option value="mg">mg</option>
-                            <option value=""></option>
-                        </select>
-                    </span>
-                    <input type="text" />
 
-                </div>
-                </div>
-                <div>
-                <h3>Les étapes de préparations</h3>
-                <input type="text" alt="film" required/>
-                </div>
-                <button type="button" >
-                Enregistrer
-                </button>
-            </fieldset>
-            </form>
+
+                    <div>
+                    <h3>Les étapes de préparations</h3>
+                    {(editRecipe.etapes).map((etape) =>(
+                        <div>
+                            <input type="text" value={etape} required/>
+                        </div>
+                        ))}
+                    </div>
+                    <button type="button" >
+                     Enregistrer
+                    </button>
+                </fieldset>
+                </form>
+
+            )}
+
 
         </>
     )
