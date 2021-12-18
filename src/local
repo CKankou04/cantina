@@ -1,10 +1,6 @@
 import axios from "axios";
 const editRecipeRequest = (data) => {
-  axios({
-      method: 'put',
-      url: `http://localhost:9000/api/recipe/${id}`,
-      data
-  })
+  axios.put( `http://localhost:9000/api/recipe/${id}`, data)
   .then (res => {
     window.location.replace('/')
   })

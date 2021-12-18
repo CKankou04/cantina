@@ -23,10 +23,15 @@ const ListRecipes = (props) => {
    const deleteRecipe = (id, index) =>{
     axios.delete(`http://localhost:9000/api/recipe/${id}`)
     .then((response) => {
+        const recipListcopy = [...recipeList]
+        recipListcopy.splice(index,1)
+        setRecipeList(recipListcopy)
         console.log(response.data)
     })
     .catch((er) => console.log(er));
   };
+
+  //Fonction de conversion de minutes en heure
   const secondToMin = (minutes) => {
     return `${Math.floor(minutes / 60)}min${minutes % 60}`
 

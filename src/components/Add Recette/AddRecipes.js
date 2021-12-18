@@ -1,7 +1,6 @@
 import React, { useState} from 'react'
 import axios from 'axios';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+
 
  const AddRecipes = () => {
 
@@ -14,6 +13,7 @@ import TextField from '@mui/material/TextField';
         tempsPreparation:'',
         ingredients: [],
         etapes:[],
+        photo :""
     }
   );
 
@@ -43,20 +43,21 @@ import TextField from '@mui/material/TextField';
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    const data = JSON.stringify(newRecipe)
+    const data = {...newRecipe}
+    data.personnes = parseInt(data.personnes)
+    data.tempsPreparation = parseInt(data.tempsPreparation)
     addRecipeRequeste(data)
     console.log(data)
 
   }
 
   const addRecipeRequeste = (data) => {
-    axios({
-        method: 'post',
-        url: 'http://localhost:9000/api/recipes',
-        data
-    })
+    axios.post('http://localhost:9000/api/recipes', data)
     .then (res => {
-      window.location.replace('/')
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
     })
   }
 
@@ -91,8 +92,8 @@ import TextField from '@mui/material/TextField';
           <div className="categories">
             <span>Niveau de Difficulté:</span>
             <select name="niveau" value={newRecipe.niveau} onChange={handleChange}  required>
-              <option value="Padawan">Padawan</option>
-              <option value="Jedi">Jedi</option>
+              <option value={newRecipe.niveau[0]}>Padawan</option>
+              <option value={newRecipe.niveau[1]}>Jedi</option>
               <option value="Maitre">Maitre</option>
             </select>
           </div>
@@ -111,9 +112,9 @@ import TextField from '@mui/material/TextField';
             <h3>Les ingredients de la recette</h3>
             <div>
               {newRecipe.ingredients.map ((ingredient, index) =>(
-                <div >
-                    <input type="number" name="ingredients" value={ingredient} onChange={(e) =>{ handleFirstChange(e, index)}} />
-                    <input type="text" name="ingredients" value={ingredient} onChange={(e) =>{ handleSecondChange(e, index)}} />
+                <div key={index} >
+                    <input type="number" name="ingredients" value={ingredient[0]} onChange={(e) =>{ handleFirstChange(e, index)}} />
+                    <input type="text" name="ingredients" value={ingredient[1]} onChange={(e) =>{ handleSecondChange(e, index)}} />
                 </div>
 
               ))}
