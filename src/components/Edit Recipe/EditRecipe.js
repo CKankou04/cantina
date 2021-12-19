@@ -1,10 +1,26 @@
 import React, {useState, useEffect} from "react"
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
+import {toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const EditRecipe = () => {
-    const [editRecipe, setEditRecipe] = useState();
+
+    const [editRecipe, setEditRecipe] = useState(
+        {
+            titre: '',
+            description: '',
+            niveau: '',
+            personnes: '',
+            tempsPreparation:'',
+            ingredients: [],
+            etapes:[],
+            photo :""
+        }
+    );
+
+
     const {id} = useParams();
 
     useEffect(() => {
@@ -54,13 +70,19 @@ const EditRecipe = () => {
         console.log(result);
       };
       const editRecipeRequest = (data) => {
-        axios.put( `http://localhost:9000/api/recipe/${id}`, data)
-        .then (res => {
-          window.location.replace('/')
-        })
-      };
-
-
+        axios.put(`http://localhost:9000/api/recipe/${id}`, data)
+            .then (res => {
+                if (res !== "error") {
+                    toast.success("Le film a bien été modifié!");
+                  } else {
+                    toast.error("Oups, une erreur s'est produite.");
+                  }
+            console.log(res)
+            })
+            .catch(err => {
+            console.log(err)
+            })
+        };
 
     return (
         <>
@@ -71,28 +93,28 @@ const EditRecipe = () => {
                     <div className="title_and_date">
                     <div>
                         <label>Titre:</label>
-                        <input type="text" value={editRecipe.titre} onChange={handleChange} required />
+                        <input type="text" name="titre" value={editRecipe.titre} onChange={handleChange} required />
                     </div>
                     <div>
                         <label>Description:</label>
-                        <input type="textarea" value={editRecipe.description} onChange={handleChange} required/>
+                        <input type="textarea" name="description" value={editRecipe.description} onChange={handleChange} required/>
                     </div>
                     </div>
                     <div className="categories_new_movie">
                     <span>Niveau de Difficulté:</span>
-                    <input type="text" value={editRecipe.niveau} onChange={handleChange} />
+                    <input type="text" name="niveau" value={editRecipe.niveau} onChange={handleChange} />
 
                     </div>
                     <div className="description_new_movie">
                     <label>Personne:</label>
                     <input
-                        type="number" className="new_desc" value={editRecipe.personnes} onChange={handleChange} required
+                        type="number" className="new_desc" name="personnes" value={editRecipe.personnes} onChange={handleChange} required
                     />
                     </div>
                     <div className="description_new_movie">
                     <label>Temps de Preparation:</label>
                     <input
-                        type="number" className="new_desc" value={editRecipe.tempsPreparation} onChange={handleChange} required
+                        type="number" className="new_desc" name="tempsPreparation" value={editRecipe.tempsPreparation} onChange={handleChange} required
                     />
                     </div>
                     <div>
@@ -115,13 +137,16 @@ const EditRecipe = () => {
                             </div>
                             ))}
                     </div>
-                    <button type="button" >
+                    <button type="submit" >
                      Enregistrer
                     </button>
                 </fieldset>
+
                 </form>
 
+
            )}
+           <ToastContainer autoClose={2500} closeOnClick />
 
         </>
     )
