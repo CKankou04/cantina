@@ -1,6 +1,7 @@
 import React from 'react'
 import  { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import './Recipe.css'
 
 const Recipe = () => {
     const [recip, setRecip] = useState();
@@ -10,6 +11,11 @@ const Recipe = () => {
     fetchRecipe();
   }, []);
 
+   //Fonction de conversion de minutes en heure
+   const secondToMin = (minutes) => {
+    return `${Math.floor(minutes / 60)}h${minutes % 60}`
+
+  }
   const fetchRecipe = async () => {
     const data = await fetch(
       `http://localhost:9000/api/recipe/${id}`
@@ -19,63 +25,61 @@ const Recipe = () => {
     console.log(result);
   };
     return (
-        <>
+        <div className="recipe">
           {recip && (
-            <div className="movie_card">
-            <div className="infos_movie_container">
-                <div className="first_name">
-                <div className="poster_movie">
-                    <figure className="imageCover">
-                        <figcaption>
-                        <img src={recip.photo} alt="poste_event" />
-                        </figcaption>
-                    </figure>
-                </div>
-                <div className="detail_movie_container">
-                    <p className="title">{recip.titre}</p>
-                    <p className="niveau">{recip.niveau}</p>
-                    <p>{recip.personnes}</p>
-                    <p>{recip.tempsPreparation}</p>
+            <div className="recipe_card">
+              <div className="infos_recipe_container">
 
-                    <div className="descriptionM">
-                    {recip.description}
+                  <div className="photo_recipe">
+                      <figure className="image" >
+                          <figcaption>
+                          <img src={recip.photo} alt="media de la recette"  className="imageCover" />
+                          </figcaption>
+                      </figure>
+                  </div>
+
+                <div className='Second-container'>
+                  <div className="detail_recipe_container">
+                      <p className="titre">{recip.titre}</p>
+                      <div className="description">
+                        <h3>Description de la recette</h3>
+                        <div>{recip.description}</div>
+                      </div>
+                      <p className="niveau"> <span>Niveau de difficulté:</span>  {recip.niveau}</p>
+                      <p className="nb-personne"> <span>Nombre de Personnes pour cette recette:</span> {recip.personnes}</p>
+                      <p className="tempsPreparation"><span>Le temps de cuisson de cette recette est:</span> {secondToMin(recip.tempsPreparation)} </p>
+
+
+                      <div className="container_ingredients">
+                    <h3>Les Ingredients de la recette</h3>
+                    <div className="card_ingredients">
+                    {(recip.ingredients).map((ingredient) =>(
+                        <div>
+                            {ingredient},
+                        </div>
+                        ))}
+
                     </div>
-                </div>
-                </div>
-
-                <div className="container_actors">
-                <h3>Les Ingredients de la recette</h3>
-                <div className="card_actors">
-                {(recip.ingredients).map((ingredient) =>(
-                    <div>
-                        {ingredient}
+                  </div>
+                  <div className="container_etapes">
+                    <h3>Les étapes de préparations:</h3>
+                    <div className="card-etapes">
+                        {(recip.etapes).map((etapes) =>(
+                        <div>
+                            {etapes}
+                        </div>
+                        ))}
                     </div>
-                    ))}
-
+                  </div>
+                  <button className="btn_retour"><Link to="/" className="retour"> Retour </Link> </button>
+                  </div>
                 </div>
                 </div>
-                <div className="container_similars_movie">
-                <h3>Les étapes de préparations:</h3>
-                <div className="card_movie_similar">
-                    {(recip.etapes).map((etapes) =>(
-                    <div>
-                        {etapes}
-                    </div>
-                    ))}
-                </div>
-
-
-                </div>
-
-
-                <button className="btn_retour"><Link to="/" className="retour"> Retour </Link> </button>
-                </div>
-
             </div>
 
       )}
 
-        </>
+        </div>
     )
 }
 export default Recipe

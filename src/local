@@ -5,3 +5,81 @@ const editRecipeRequest = (data) => {
     window.location.replace('/')
   })
 };
+
+
+import {Button,Form,Input,Select,TextArea,label} from 'semantic-ui-react'
+
+const valOptions = [
+  { key: 'p', text: 'Padawan', value: 'padawan' },
+  { key: 'j', text: 'Jedi', value: 'jedi' },
+  { key: 'm', text: 'maitre', value: 'maitre' },
+]
+
+
+<Form onSubmit={handleSubmit} width={50}>
+        <Form.Group widths='equal'>
+          <Form.Field
+            control={Input}
+            name='titre'
+            label='Titre'
+            value={newRecipe.titre}   onChange={handleChange}
+          />
+          <Form.Field
+            control={Select}
+            label='Niveau'
+            name='niveau'
+            options={valOptions}
+            value={newRecipe.niveau} onChange={handleChange}
+
+          />
+        </Form.Group>
+        <Form.Group widths='equal'>
+          <Form.Field
+              control={Input}
+              label='Nombre de Personne'
+              name='personnes'
+              value={newRecipe.personnes}   onChange={handleChange}
+            />
+            <Form.Field
+              control={Input}
+              label='Temps de préparation'
+              name='tempsPreparation'
+              value={newRecipe.tempsPreparation} onChange={handleChange}
+
+            />
+
+        </Form.Group>
+
+        <Form.Field
+          control={TextArea}
+          label='Description'
+          name='description'
+          value={newRecipe.description} onChange={handleChange}
+        />
+        <Form.Group>
+          <label>Les Ingrédients</label>
+          <Form.Group>
+              {newRecipe.ingredients.map ((ingredient, index) =>(
+                <Form.Field key={index} inline >
+                    <input type="number" name="ingredients" value={ingredient[0]} onChange={(e) =>{ handleFirstChange(e, index)}} />
+                    <input type="text" name="ingredients" value={ingredient[1]} onChange={(e) =>{ handleSecondChange(e, index)}} />
+                </Form.Field>
+
+              ))}
+              <button type="button" onClick={addIngredient}>Ajouter un ingrédient</button>
+            </Form.Group>
+        </Form.Group>
+        <Form.Group>
+          <label>Les étapes de cuisson</label>
+              <Form.Group>
+                  {newRecipe.etapes.map((etape, index) =>(
+                  <Form.Field key={index}>
+                    <input type="text" alt="etape" name="etapes" value={etape} onChange={(e) =>{ handleEtapesChange(e, index)} } required/>
+                </Form.Field>
+                ))}
+              </Form.Group>
+            <button type="button" onClick={addEtape}> ajouter une étape</button>
+        </Form.Group>
+
+        <Form.Field control={Button}>Submit</Form.Field>
+      </Form>

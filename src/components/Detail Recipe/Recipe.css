@@ -1,0 +1,78 @@
+
+.infos_recipe_container{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+.image{
+    padding:0;
+    margin-top:1rem;
+}
+.image figcaption{
+    padding:0;
+    margin:0
+}
+.photo_recipe{
+    padding:0;
+}
+
+.imageCover{
+    width:80%;
+    height: 50%;
+    margin-right:1rem;
+}
+.Second-container{
+    display:flex;
+    flex-direction: column;
+    text-align:left;
+}
+.niveau span{
+    font-weight:bold;
+    font-size: 1rem;
+}
+.nb-personne span{
+    font-weight:bold;
+    font-size:1rem;
+}
+.tempsPreparation span{
+    font-weight:bold;
+    font-size:1rem;
+}
+
+
+.detail_recipe_container .titre{
+    font-size:3rem;
+    color:#335B36;
+    font-weight: bold;
+}
+.detail_recipe_container .niveau{
+
+}
+h3{
+    text-align:left;
+    margin-left: 2rem;
+
+}
+.card_ingredients{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+}
+.card-etapes{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn_retour{
+    width:5rem;
+    height:2rem;
+    background-color: white;
+}
+.retour{
+    text-decoration:none;
+    font-size:1rem;
+    color:red;
+}

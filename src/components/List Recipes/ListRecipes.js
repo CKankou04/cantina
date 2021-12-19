@@ -33,7 +33,7 @@ const ListRecipes = (props) => {
 
   //Fonction de conversion de minutes en heure
   const secondToMin = (minutes) => {
-    return `${Math.floor(minutes / 60)}min${minutes % 60}`
+    return `${Math.floor(minutes / 60)}h${minutes % 60}`
 
   }
 
@@ -70,7 +70,7 @@ const ListRecipes = (props) => {
                         <li className="list-recipe" key={index}>
                             <Link to={`/recipe/${recipe.id}`}>
                                 <span className="image-recipe">
-                                    <img src={recipe.photo} alt="poster du film" width="200px" height="250px" className="list-img" />
+                                    <img src={recipe.photo} alt="poster du film"className="list-img" />
                                 </span>
                             </Link>
                         <span className="recipe-info">

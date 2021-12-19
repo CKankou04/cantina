@@ -1,26 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import '../utils/Navbar.css'
+
 
 const Navbar = () => {
     return (
-        <>
-            <div className="header">
                 <nav className="container-nav">
                         <ul className="list-nav">
-                            <li> <Link to ="/addrecipe" className="lien">
-                            <Fab size="small" color="primary" aria-label="add">
-                             <AddIcon />
-                            </Fab> </Link> </li>
+                            <li className='list'> <Link to="/" className="link">Accueil</Link></li>
+                            <li className='list'> <Link to ="/addrecipe" className="link">Ajout Recette </Link> </li>
                         </ul>
                 </nav>
-
-
-            </div>
-
-
-        </>
     )
 }
 
