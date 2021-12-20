@@ -1,0 +1,122 @@
+.add{
+    display:flex;
+    flex-direction: row;
+    justify: space-evenly;
+    gap:10%;
+}
+.form-add{
+    margin:1.5rem;
+    width:30%;
+}
+.titre-form{
+    font-size:2rem;
+    text-align: left;
+
+}
+.formulaire{
+    border: dashed 4px #335B36;
+    border-radius:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:1rem;
+}
+.titre_et_niveau{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.personne_et_tempspreparation{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card-titre, .card-niveau, .card-personne, .card-tempspreparation, .card-description, .card-etapes, .card-image{
+    display:flex;
+    flex-direction: column;
+    text-align:left;
+    margin-left: 3rem;
+}
+.card-personne input{
+    font-size:1rem;
+}
+.card-titre input{
+    font-size:1rem;
+}
+.card-niveau select{
+    font-size:1rem;
+    padding-left: 5rem;
+    padding-right:5rem;
+    text-align: left;
+    margin-right: 7rem;
+}
+.card-tempspreparation input{
+    font-size:1rem;
+    padding-left: 3rem;
+
+    text-align: left;
+    margin-right: 7rem;
+}
+.card-description textarea{
+    font-size:1rem;
+    padding-left: 5rem;
+    padding-right:5rem;
+    text-align: left;
+    margin-right: 7rem;
+}
+.card-etapes input{
+    font-size:1rem;
+    padding-left: 5rem;
+    padding-right:5rem;
+    text-align: left;
+    margin-right: 7rem;
+    margin-bottom:5px;
+}
+.card-etapes button{
+    width:25%;
+}
+.card-ingredient h5{
+    text-align: left;
+    margin-left:3rem;
+}
+.ingredients{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align:left;
+    margin-left: 3rem;
+}
+.btn-submit{
+
+    text-align:center;
+    align-self:center;
+    border: none;
+    background-color:transparent;
+}
+
+.photo{
+    font-size:1rem;
+    padding-left: 5rem;
+    padding-right:3rem;
+    text-align: left;
+    margin-right: 3rem;
+    margin-bottom:5px;
+}
+.quantite, .titre-ingredient{
+    font-size:1rem;
+    padding-left: 3rem;
+    text-align: left;
+    margin-right: 3rem;
+    margin-bottom:5px
+}
+.card-img{
+    margin:0;
+    padding:0;
+}
+.imgrecette{
+    width: 90%;
+    height: 80%;
+    align-self: right;
+    margin-top:2rem;
+    padding-left:2rem;
+}

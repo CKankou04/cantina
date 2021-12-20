@@ -3,6 +3,8 @@ import { useParams} from "react-router-dom";
 import axios from "axios";
 import {toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import '../Edit Recipe/EditRecipe.css'
+
 
 
 const EditRecipe = () => {
@@ -73,7 +75,7 @@ const EditRecipe = () => {
         axios.put(`http://localhost:9000/api/recipe/${id}`, data)
             .then (res => {
                 if (res !== "error") {
-                    toast.success("Le film a bien été modifié!");
+                    toast.success("La Recette a bien été modifié!");
                   } else {
                     toast.error("Oups, une erreur s'est produite.");
                   }
@@ -85,46 +87,62 @@ const EditRecipe = () => {
         };
 
     return (
-        <>
+        <div className="edit">
             {editRecipe &&(
-                <form className="form_new_movie" onSubmit={handleSubmit}>
-                <fieldset className="card_new_movie">
-                    <legend className="legend">Formulaire de modification</legend>
-                    <div className="title_and_date">
-                    <div>
-                        <label>Titre:</label>
-                        <input type="text" name="titre" value={editRecipe.titre} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Description:</label>
-                        <input type="textarea" name="description" value={editRecipe.description} onChange={handleChange} required/>
-                    </div>
-                    </div>
-                    <div className="categories_new_movie">
-                    <span>Niveau de Difficulté:</span>
-                    <input type="text" name="niveau" value={editRecipe.niveau} onChange={handleChange} />
+                <form className="form-edit" onSubmit={handleSubmit}>
+                <fieldset className="formulaire">
+                    <legend className="titre-form">Formulaire de modification</legend>
+                    <div className="titre_et_niveau">
+                        <span className="card-titre">
+                            <label>Titre:</label>
+                            <input type="text" name="titre" value={editRecipe.titre} onChange={handleChange} required />
+                        </span>
+                        <span className="card-niveau">
+                            <span>Niveau de Difficulté:</span>
+                            <select name="niveau" value={editRecipe.niveau} onChange={handleChange}  required>
+                                <option value="padawa">Padawan</option>
+                                <option value="jedi">Jedi</option>
+                                <option value="maitre">Maitre</option>
+                            </select>
+                        </span>
+
 
                     </div>
-                    <div className="description_new_movie">
-                    <label>Personne:</label>
-                    <input
-                        type="number" className="new_desc" name="personnes" value={editRecipe.personnes} onChange={handleChange} required
-                    />
+
+                    <div className="personne_et_tempspreparation">
+                        <span className="card-personne">
+                            <label>Personne:</label>
+                            <input
+                                type="number" className="new_desc" name="personnes" value={editRecipe.personnes} onChange={handleChange} required
+                            />
+                        </span>
+                        <span className="card-tempspreparation">
+                            <label>Temps de Preparation:</label>
+                            <input
+                                type="number" className="new_desc" name="tempsPreparation" value={editRecipe.tempsPreparation} onChange={handleChange} required
+                            />
+                        </span>
+
                     </div>
-                    <div className="description_new_movie">
-                    <label>Temps de Preparation:</label>
-                    <input
-                        type="number" className="new_desc" name="tempsPreparation" value={editRecipe.tempsPreparation} onChange={handleChange} required
-                    />
+                    <div className="card-description">
+                        <label>Description:</label>
+                        <textarea type="textarea" name="description" value={editRecipe.description} onChange={handleChange} required/>
+
                     </div>
-                    <div>
-                        <h3>Les ingredients de la recette</h3>
+                    <div className="card-ingredient">
+                        <h5>Les ingredients de la recette</h5>
                         <div>
                             {editRecipe.ingredients.map ((ingredient, index) =>(
-                            <div key={index} >
-                                <input type="number" name="ingredients" value={ingredient[0]} onChange={(e) =>{ handleFirstChange(e, index)}} />
-                                <input type="text" name="ingredients" value={ingredient[1]} onChange={(e) =>{ handleSecondChange(e, index)}} />
-                                <button type="button" >Ajouter un ingrédient</button>
+                            <div key={index} className="ingredients">
+                                <span>
+                                    <label>Quantite</label>
+                                    <input type="number" name="ingredients" className='quantite' value={ingredient[0]} onChange={(e) =>{ handleFirstChange(e, index)}} />
+                                </span>
+                                <span>
+                                    <label>Nom de l'ingredient</label>
+                                    <input type="text" name="ingredients" className='titre-ingredient' value={ingredient[1]} onChange={(e) =>{ handleSecondChange(e, index)}} />
+                                </span>
+
                             </div>
                         ))}
                         </div>
@@ -146,9 +164,9 @@ const EditRecipe = () => {
 
 
            )}
-           <ToastContainer autoClose={2500} closeOnClick />
+           <ToastContainer autoClose={3000} closeOnClick />
 
-        </>
+        </div>
     )
 }
 export default EditRecipe
