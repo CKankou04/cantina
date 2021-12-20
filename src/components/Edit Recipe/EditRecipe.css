@@ -4,13 +4,11 @@
     justify-content:center;
     gap:10%;
     background-image: url("../assets/recette2.jpg");
-    background-origin: border-box;
-
-
-
+    background-size: cover;
 }
 .form-edit{
     margin-top:3rem;
+    margin-left:10rem;
     width:70%;
     color:#FFFFFF;
 }
@@ -45,9 +43,11 @@
 }
 .card-personne input{
     font-size:1rem;
+    border-radius:4px;
 }
 .card-titre input{
     font-size:1rem;
+    border-radius:4px;
 }
 .card-niveau select{
     font-size:1rem;
@@ -55,10 +55,12 @@
     padding-right:5rem;
     text-align: left;
     margin-right: 7rem;
+    border-radius:4px;
 }
 .card-tempspreparation input{
     font-size:1rem;
     padding-left: 3rem;
+    border-radius:4px;
 
     text-align: left;
     margin-right: 7rem;
@@ -69,6 +71,7 @@
     padding-right:5rem;
     text-align: left;
     margin-right: 7rem;
+    border-radius:4px;
 }
 .input-textarea{
     font-size:1rem;
@@ -79,6 +82,10 @@
 }
 .card-etapes button{
     width:25%;
+}
+.card-etapes input{
+    border-radius:4px;
+    text-align: left;
 }
 .card-ingredient h5{
     text-align: left;
@@ -93,10 +100,13 @@
 }
 .btn-submit{
     align-self:center;
-    border: none;
-    background-color:transparent;
-    color:#FFFFFF
+    border:3px;
+    border-radius:3px;
+    background-color:#d7cece;
+    font-size:2rem;
+    padding:0.5rem;
 }
+
 
 
 .photo{
@@ -106,11 +116,13 @@
     text-align: left;
     margin-right: 3rem;
     margin-bottom:5px;
+    border-radius:4px;
 }
 .quantite, .titre-ingredient{
     font-size:1rem;
     padding-left: 3rem;
     text-align: left;
     margin-right: 3rem;
-    margin-bottom:5px
+    margin-bottom:5px;
+    border-radius:4px;
 }

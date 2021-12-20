@@ -7,7 +7,7 @@ export const Banner = () => {
     return (
         <>
             <div className='lmj-banner'>
-                <img src={logo} alt='Movie board' className='lmj-logo' />
+                <img src={logo} alt='Logo-recette' className='lmj-logo' />
 
             </div>
         </>

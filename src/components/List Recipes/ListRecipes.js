@@ -90,7 +90,7 @@ const ListRecipes = (props) => {
                                 <button onClick={() => {
                                     if (window.confirm('Voulez-vous vraiment supprimer ce film ?')) {
                                         deleteRecipe(recipe.id , index);
-                                    }}}>
+                                    }}} className='btn-supp'>
                                         <i className=" big trash alternate outline icon"></i>
                                 </button>
                             </span>

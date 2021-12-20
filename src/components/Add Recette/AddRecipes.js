@@ -93,7 +93,7 @@ import "react-toastify/dist/ReactToastify.css";
    }
 
   return (
-    <div className="add" >
+    <div className="addR" >
 
      <form className="form-add" onSubmit={handleSubmit} >
         <fieldset className='formulaire' >
@@ -164,6 +164,7 @@ import "react-toastify/dist/ReactToastify.css";
               </div>
             <button type="button" onClick={addEtape}> Ajouter des étapes</button>
 
+
           </div>
           <div className="card-image">
               <label>Photo</label>
@@ -173,7 +174,7 @@ import "react-toastify/dist/ReactToastify.css";
              {/* <button class="ui icon button" type="submit" className='btn-submit'>
               <i aria-hidden="true" className="big save icon"></i>
             </button> */}
-              <Popup content='Cliquez ici pour enregistrer' trigger={<Button type="submit" className='btn-submit' icon='save' />} />
+              <Popup content='Cliquez ici pour enregistrer' trigger={<Button type="submit" className='btn-submit' label="Enregistrer" icon='save' />} />
         </fieldset>
       </form>
      <span><ToastContainer autoClose={3000} closeOnClick /></span>

@@ -7,6 +7,7 @@ import '../Edit Recipe/EditRecipe.css'
 
 
 
+
 const EditRecipe = () => {
 
     const [editRecipe, setEditRecipe] = useState(
@@ -158,8 +159,9 @@ const EditRecipe = () => {
                             ))}
                     </div>
                     <button type="submit" className="btn-submit">
-                    <i aria-hidden="true" className="big edit outline icon"></i>
+                         Modifier
                     </button>
+
 
                 </fieldset>
 

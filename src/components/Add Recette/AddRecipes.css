@@ -1,7 +1,7 @@
-.add{
+.addR{
     display:flex;
     flex-direction: row;
-    justify: space-evenly;
+    justify-content: space-evenly;
     gap:10%;
 }
 .form-add{
@@ -89,9 +89,12 @@
 .btn-submit{
 
     text-align:center;
-    align-self:center;
+
     border: none;
     background-color:transparent;
+}
+.btn-submit .ui.basic.label{
+    background-color:#d7cece;
 }
 
 .photo{
@@ -116,7 +119,7 @@
 .imgrecette{
     width: 90%;
     height: 80%;
-    align-self: right;
+    align-self: flex-end;
     margin-top:2rem;
-    padding-left:2rem;
+    padding-left:1rem;
 }
