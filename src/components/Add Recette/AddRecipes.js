@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
  const AddRecipes = () => {
 
-  <Popup content='Cliquez ici pour enregistrer' trigger={<Button icon='save' />} />
+
 
   const [newRecipe, setNewRecipe] = useState(
     {
@@ -170,9 +170,10 @@ import "react-toastify/dist/ReactToastify.css";
               <input
                 type="url" className="photo" name="photo" value={newRecipe.photo} onChange={handleChange} />
           </div>
-             <button class="ui icon button" type="submit" className='btn-submit'>
-              <i aria-hidden="true" class="big save icon"></i>
-            </button>
+             {/* <button class="ui icon button" type="submit" className='btn-submit'>
+              <i aria-hidden="true" className="big save icon"></i>
+            </button> */}
+              <Popup content='Cliquez ici pour enregistrer' trigger={<Button type="submit" className='btn-submit' icon='save' />} />
         </fieldset>
       </form>
      <span><ToastContainer autoClose={3000} closeOnClick /></span>

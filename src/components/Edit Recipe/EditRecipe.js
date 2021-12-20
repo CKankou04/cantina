@@ -86,12 +86,14 @@ const EditRecipe = () => {
             })
         };
 
+
     return (
+        <>
         <div className="edit">
             {editRecipe &&(
                 <form className="form-edit" onSubmit={handleSubmit}>
                 <fieldset className="formulaire">
-                    <legend className="titre-form">Formulaire de modification</legend>
+                    <legend className="titre-form">MODIFICATION D'UNE RECETTE</legend>
                     <div className="titre_et_niveau">
                         <span className="card-titre">
                             <label>Titre:</label>
@@ -147,17 +149,18 @@ const EditRecipe = () => {
                         ))}
                         </div>
                     </div>
-                    <div>
-                        <h3>Les étapes de préparations</h3>
+                    <div className="card-etape">
+                        <h5>Les étapes de préparations</h5>
                         {(editRecipe.etapes).map((etape, index) =>(
                             <div key={index}>
-                                <input type="text" value={etape} onChange={(e) =>{ handleEtapesChange(e, index)}} required/>
+                                <textarea type="textarea" className="input-textarea" value={etape} onChange={(e) =>{ handleEtapesChange(e, index)}} required/>
                             </div>
                             ))}
                     </div>
-                    <button type="submit" >
-                     Enregistrer
+                    <button type="submit" className="btn-submit">
+                    <i aria-hidden="true" className="big edit outline icon"></i>
                     </button>
+
                 </fieldset>
 
                 </form>
@@ -167,6 +170,8 @@ const EditRecipe = () => {
            <ToastContainer autoClose={3000} closeOnClick />
 
         </div>
+
+        </>
     )
 }
 export default EditRecipe

@@ -1,12 +1,18 @@
 .edit{
     display:flex;
     flex-direction: row;
-    justify: space-evenly;
+    justify-content:center;
     gap:10%;
+    background-image: url("../assets/recette2.jpg");
+    background-origin: border-box;
+
+
+
 }
-.form-edit-recipe{
-    margin:1.5rem;
-    width:30%;
+.form-edit{
+    margin-top:3rem;
+    width:70%;
+    color:#FFFFFF;
 }
 .titre-form{
     font-size:2rem;
@@ -31,7 +37,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.card-titre, .card-niveau, .card-personne, .card-tempspreparation, .card-description, .card-etapes, .card-image{
+.card-titre, .card-niveau, .card-personne, .card-tempspreparation, .card-description, .card-etape, .card-image{
     display:flex;
     flex-direction: column;
     text-align:left;
@@ -64,13 +70,12 @@
     text-align: left;
     margin-right: 7rem;
 }
-.card-etapes input{
+.input-textarea{
     font-size:1rem;
     padding-left: 5rem;
     padding-right:5rem;
     text-align: left;
     margin-right: 7rem;
-    margin-bottom:5px;
 }
 .card-etapes button{
     width:25%;
@@ -87,12 +92,12 @@
     margin-left: 3rem;
 }
 .btn-submit{
-
-    text-align:center;
     align-self:center;
     border: none;
     background-color:transparent;
+    color:#FFFFFF
 }
+
 
 .photo{
     font-size:1rem;
@@ -108,16 +113,4 @@
     text-align: left;
     margin-right: 3rem;
     margin-bottom:5px
-}
-.card-img{
-    margin:0;
-    padding:0;
-}
-.imgrecette{
-    width: 90%;
-    height: 64%;
-    align-self: right;
-    margin-top:2rem;
-    padding-left:7rem;
-
 }

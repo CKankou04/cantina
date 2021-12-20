@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import '../List Recipes/ListRecipes.css'
-import {FaTrashAlt} from 'react-icons/fa'
+import { Banner } from '../../utils/Banner';
 
 
 const ListRecipes = (props) => {
@@ -26,6 +26,7 @@ const ListRecipes = (props) => {
         const recipListcopy = [...recipeList]
         recipListcopy.splice(index,1)
         setRecipeList(recipListcopy)
+        window.location.reload();
         console.log(response.data)
     })
     .catch((er) => console.log(er));
@@ -40,6 +41,7 @@ const ListRecipes = (props) => {
 
     return (
         <div>
+            <Banner />
             <form className="form-search">
                 <span className="form-search-title">
                     <label>Titre </label>
@@ -73,17 +75,25 @@ const ListRecipes = (props) => {
                                     <img src={recipe.photo} alt="poster du film"className="list-img" />
                                 </span>
                             </Link>
-                        <span className="recipe-info">
-                            <span className="recipe-info-title">{recipe.titre} </span>
-                            <p className="n-dificlute"> Le niveau {recipe.niveau}</p>
-                            <p className="nb-pers"> Pour {recipe.personnes}personne(s)</p>
-                            <p className="tempsPreparation">Temps de préparation: {secondToMin(recipe.tempsPreparation)} </p>
+                            <span className="recipe-info">
+                                <div className="recipe-info-title">{recipe.titre} </div>
+                                <div className="recipe-rest-info">
+                                    <span className="n-dificlute"> Le niveau {recipe.niveau}</span>
+                                    <span className="nb-pers"> Pour {recipe.personnes}personne(s)</span>
+                                    <span className="tempsPreparation">Temps de préparation: {secondToMin(recipe.tempsPreparation)} </span>
 
-                        </span>
-                        <span className="container-btn">
-                            <button><Link to={`/editRecipe/${recipe.id}`} className="btn">Modifier</Link></button>
-                            <button onClick={() => deleteRecipe(recipe.id , index)} className="btn"><FaTrashAlt className='ansone'/></button>
-                        </span>
+                                </div>
+
+                            </span>
+                            <span className="container-btn">
+                                <Link to={`/editRecipe/${recipe.id}`} className="btn-modif"><i className=" big edit outline icon"></i></Link>
+                                <button onClick={() => {
+                                    if (window.confirm('Voulez-vous vraiment supprimer ce film ?')) {
+                                        deleteRecipe(recipe.id , index);
+                                    }}}>
+                                        <i className=" big trash alternate outline icon"></i>
+                                </button>
+                            </span>
 
                         </li>
 
